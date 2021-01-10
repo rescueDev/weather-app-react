@@ -17,16 +17,20 @@ const useStyles = makeStyles ({
     transform: 'scale(0.8)',
   },
   title: {
-    fontSize: 18,
+    fontSize: 22,
   },
   pos: {
     marginBottom: 12,
   },
+  box:{textAlign:'center'}
 });
 
 export default function TodayWeather({data}) {
   const classes = useStyles();
 
+  if(!data.weather){
+      return 'Loading...'
+  }
 
     return (
     <div className={classes.root}>
@@ -39,6 +43,8 @@ export default function TodayWeather({data}) {
                 <Typography variant="h1" component="h2" className={classes.title}>{data.city}, {data.country}</Typography>
                 <Typography className={classes.title}>{data.ts}</Typography>
                 <Typography className={classes.title}>{Math.round(data.temp)} C</Typography>
+                <img src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`} alt=""/>
+                <Typography className={classes.title}>{data.weather.description}</Typography>
             </CardContent>
 
             </Card>

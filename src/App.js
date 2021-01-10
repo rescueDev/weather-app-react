@@ -19,7 +19,8 @@ class App extends Component {
           longitude: position.coords.longitude,
         };
         this.setState({ coords: newCoords });
-        console.log(this.state.coords);
+        //console.log(this.state.coords);
+
         //Axios Call
         axios
           .get("https://api.weatherbit.io/v2.0/current", {
@@ -31,8 +32,22 @@ class App extends Component {
             },
           })
           .then((res) => {
-            console.log(res.data.data[0]);
-            this.setState({ data: res.data.data[0] });
+            const data = res.data.data[0];
+
+            let weatherData = {
+              weather: data.weather,
+              precip: data.precip,
+              humidity: data.rh,
+              airQuality: data.aqi,
+              temp: data.temp,
+              sunrise: data.sunrise,
+              pressure: data.pres,
+              country: data.country_code,
+              ts: data.ts,
+              city: data.city_name,
+              windSpeed: data.wind_spd,
+            };
+            this.setState({ data: weatherData });
             console.log(this.state.data);
           });
       });

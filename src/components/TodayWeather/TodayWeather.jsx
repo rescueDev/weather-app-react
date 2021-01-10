@@ -6,6 +6,7 @@ import Grid from '@material-ui/core/Grid';
 import { CardContent, Typography } from '@material-ui/core';
 import 'fontsource-roboto';
 
+
 const useStyles = makeStyles ({
    root: {
     minWidth: 275,
@@ -28,6 +29,7 @@ const useStyles = makeStyles ({
 export default function TodayWeather({data}) {
   const classes = useStyles();
 
+  console.log();
   if(!data.weather){
       return 'Loading...'
   }
@@ -41,7 +43,9 @@ export default function TodayWeather({data}) {
 
             <CardContent className={classes.box} item xs>
                 <Typography variant="h1" component="h2" className={classes.title}>{data.city}, {data.country}</Typography>
-                <Typography className={classes.title}>{data.ts}</Typography>
+                <Typography className={classes.title}>{new Date(data.ts * 1000).toLocaleDateString(
+              "it-IT"
+            )}</Typography>
                 <Typography className={classes.title}>{Math.round(data.temp)} C</Typography>
                 <img src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`} alt=""/>
                 <Typography className={classes.title}>{data.weather.description}</Typography>

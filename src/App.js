@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
+import AutoGrid from "./components/TodayWeather/TodayWeather";
 import TodayWeather from "./components/TodayWeather/TodayWeather";
 
 class App extends Component {
@@ -33,7 +34,7 @@ class App extends Component {
           })
           .then((res) => {
             const data = res.data.data[0];
-
+            //filter data fetched from API
             let weatherData = {
               weather: data.weather,
               precip: data.precip,
@@ -55,10 +56,11 @@ class App extends Component {
   }
 
   render() {
+    const { data } = this.state;
     return (
       <div>
         <h1>App Weather</h1>
-        <TodayWeather />
+        <TodayWeather data={data} />
       </div>
     );
   }

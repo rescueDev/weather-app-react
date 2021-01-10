@@ -1,6 +1,6 @@
 import axios from "axios";
 import React, { Component } from "react";
-import AutoGrid from "./components/TodayWeather/TodayWeather";
+import TodaySpecs from "./components/TodaySpecs/TodaySpecs";
 import TodayWeather from "./components/TodayWeather/TodayWeather";
 
 class App extends Component {

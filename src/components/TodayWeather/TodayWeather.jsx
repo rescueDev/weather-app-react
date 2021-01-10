@@ -5,6 +5,8 @@ import Card from '@material-ui/core/Card'
 import Grid from '@material-ui/core/Grid';
 import { CardContent, Typography } from '@material-ui/core';
 import 'fontsource-roboto';
+import TodaySpecs from '../TodaySpecs/TodaySpecs';
+import DaysWeather from '../DaysWeather/DaysWeather';
 
 
 const useStyles = makeStyles ({
@@ -29,7 +31,6 @@ const useStyles = makeStyles ({
 export default function TodayWeather({data}) {
   const classes = useStyles();
 
-  console.log();
   if(!data.weather){
       return 'Loading...'
   }
@@ -38,7 +39,7 @@ export default function TodayWeather({data}) {
     <div className={classes.root}>
       <Grid container spacing={1}>
 
-        <Grid item xs={12} md={8} lg={6}>
+        <Grid item xs={12} sm={8} md={6} lg={6}>
             <Card className={classes.root}>
 
             <CardContent className={classes.box} item xs>
@@ -46,27 +47,17 @@ export default function TodayWeather({data}) {
                 <Typography className={classes.title}>{new Date(data.ts * 1000).toLocaleDateString(
               "it-IT"
             )}</Typography>
-                <Typography className={classes.title}>{Math.round(data.temp)} C</Typography>
+                <Typography className={classes.title}>{Math.round(data.temp)} °C</Typography>
                 <img src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`} alt=""/>
                 <Typography className={classes.title}>{data.weather.description}</Typography>
             </CardContent>
 
             </Card>
-
         </Grid>
+            <TodaySpecs data={data}/>           
         
       </Grid>
-      <Grid container spacing={3}>
-        <Grid item xs>
-          <Paper className={classes.paper}>xs</Paper>
-        </Grid>
-        <Grid item xs={6}>
-          <Paper className={classes.paper}>xs=6</Paper>
-        </Grid>
-        <Grid item xs>
-          <Paper className={classes.paper}>xs</Paper>
-        </Grid>
-      </Grid>
+       <DaysWeather />             
     </div>
     );
 }

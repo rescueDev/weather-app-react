@@ -57,7 +57,7 @@ export default function TodayWeather({data}) {
             <TodaySpecs data={data}/>           
         
       </Grid>
-       <DaysWeather />             
+                 
     </div>
     );
 }

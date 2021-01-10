@@ -1,7 +1,9 @@
 import axios from "axios";
 import React, { Component } from "react";
+import DaysWeather from "./components/DaysWeather/DaysWeather";
 import TodaySpecs from "./components/TodaySpecs/TodaySpecs";
 import TodayWeather from "./components/TodayWeather/TodayWeather";
+import "./App.css";
 
 class App extends Component {
   state = {
@@ -10,6 +12,22 @@ class App extends Component {
       latitude: "",
       longitude: "",
     },
+    daysData: [],
+  };
+
+  getDayOfWeek = (date) => {
+    const dayOfWeek = new Date(date).getDay();
+    return isNaN(dayOfWeek)
+      ? null
+      : [
+          "Sunday",
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+        ][dayOfWeek];
   };
 
   componentDidMount() {
@@ -51,16 +69,53 @@ class App extends Component {
             this.setState({ data: weatherData });
             console.log(this.state.data);
           });
+
+        //Second Api call
+        axios
+          .get("https://api.weatherbit.io/v2.0/forecast/daily", {
+            params: {
+              key: `${process.env.REACT_APP_API_KEY}`,
+              lat: this.state.coords.latitude,
+              lon: this.state.coords.longitude,
+              lang: "it",
+              days: 7,
+            },
+          })
+          .then((res) => {
+            console.log("7 days", res.data.data);
+            const data = res.data.data;
+            this.setState({ daysData: data });
+            //console.log(this.state.daysData);
+          });
       });
     }
   }
 
   render() {
+    let daysWeather = (
+      <div className="container">
+        {this.state.daysData.map((day, index) => {
+          console.log(day);
+          return (
+            <DaysWeather
+              weather={day.weather}
+              max={day.max_temp}
+              min={day.min_temp}
+              precip={day.precip}
+              ts={this.getDayOfWeek(day.ts * 1000)}
+            />
+          );
+        })}
+      </div>
+    );
+
     const { data } = this.state;
+    const { daysData } = this.state;
     return (
       <div>
         <h1>App Weather</h1>
         <TodayWeather data={data} />
+        {daysWeather}
       </div>
     );
   }

@@ -12,7 +12,9 @@ const useStyles = makeStyles ({
   },
  
   title: {
-    fontSize: 22,
+    fontSize: 16,
+
+    
   },
   pos: {
     marginBottom: 12,
@@ -36,7 +38,7 @@ export default function TodaySpecs({data}) {
                 <Typography variant="h1" component="h2" className={classes.title}>Velocita vento: {Math.round(data.windSpeed)} km/h</Typography>
                 <Typography className={classes.title}>Qualita aria: {data.airQuality} %</Typography>
                 <Typography className={classes.title}>Pressione: {Math.round(data.pressure)} mb</Typography>
-                <Typography className={classes.title}>Precipitazioni :{data.precip} mm/h</Typography>
+                <Typography className={classes.title}>Precipitazioni: {data.precip} mm/h</Typography>
             </CardContent>
         </Card>
         </Grid>

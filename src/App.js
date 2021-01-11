@@ -1,14 +1,13 @@
 import axios from "axios";
 import React, { Component } from "react";
 import DaysWeather from "./components/DaysWeather/DaysWeather";
-import TodaySpecs from "./components/TodaySpecs/TodaySpecs";
 import TodayWeather from "./components/TodayWeather/TodayWeather";
-import styled from "styled-components";
 import "./App.css";
-import { Card, Grid } from "@material-ui/core";
+import InputSearch from "./components/InputSearch/InputSearch";
 
 class App extends Component {
   state = {
+    city: "",
     data: "",
     coords: {
       latitude: "",
@@ -17,7 +16,7 @@ class App extends Component {
     daysData: [],
   };
 
-  getDayOfWeek = (date) => {
+  /*   getDayOfWeek = (date) => {
     const dayOfWeek = new Date(date).getDay();
     return isNaN(dayOfWeek)
       ? null
@@ -30,6 +29,61 @@ class App extends Component {
           "Friday",
           "Saturday",
         ][dayOfWeek];
+  }; */
+
+  inputCityHandler = (event) => {
+    this.setState({ city: event.target.value });
+  };
+
+  searchCityHandler = (e) => {
+    if (e.key === "Enter") {
+      this.setState({ city: "" });
+      //API call
+      axios
+        .get("https://api.weatherbit.io/v2.0/current", {
+          params: {
+            key: `${process.env.REACT_APP_API_KEY}`,
+            city: this.state.city,
+            lang: "it",
+          },
+        })
+        .then((res) => {
+          const data = res.data.data[0];
+          //filter data fetched from API
+          let weatherData = {
+            weather: data.weather,
+            precip: data.precip,
+            humidity: data.rh,
+            airQuality: data.aqi,
+            temp: data.temp,
+            sunrise: data.sunrise,
+            pressure: data.pres,
+            country: data.country_code,
+            ts: data.ts,
+            city: data.city_name,
+            windSpeed: data.wind_spd,
+          };
+          this.setState({ data: weatherData });
+          console.log(this.state.data);
+        });
+      //Second Api call
+      axios
+        .get("https://api.weatherbit.io/v2.0/forecast/daily", {
+          params: {
+            key: `${process.env.REACT_APP_API_KEY}`,
+            city: this.state.city,
+
+            lang: "it",
+            days: 8,
+          },
+        })
+        .then((res) => {
+          console.log("7 days", res.data.data);
+          const data = res.data.data.splice(1);
+          this.setState({ daysData: data });
+          console.log(this.state.daysData);
+        });
+    }
   };
 
   componentDidMount() {
@@ -97,7 +151,7 @@ class App extends Component {
     let daysWeather = (
       <div className="container">
         {this.state.daysData.map((day, index) => {
-          console.log(day);
+          //console.log(day);
           return (
             <DaysWeather
               weather={day.weather}
@@ -116,6 +170,11 @@ class App extends Component {
     return (
       <div className="App">
         <h1>App Weather</h1>
+        <InputSearch
+          enter={this.searchCityHandler}
+          change={this.inputCityHandler}
+          value={this.state.city}
+        ></InputSearch>
         <TodayWeather data={data} />
         {daysWeather}
       </div>

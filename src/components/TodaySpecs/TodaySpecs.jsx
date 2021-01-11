@@ -24,7 +24,7 @@ const useStyles = makeStyles ({
 
 
 export default function TodaySpecs({data}) {
-    console.log(data);
+    //console.log(data);
       const classes = useStyles();
       if (!data) {
           return 'Loading...'

@@ -4,6 +4,7 @@ import DaysWeather from "./components/DaysWeather/DaysWeather";
 import TodaySpecs from "./components/TodaySpecs/TodaySpecs";
 import TodayWeather from "./components/TodayWeather/TodayWeather";
 import "./App.css";
+import { Grid } from "@material-ui/core";
 
 class App extends Component {
   state = {
@@ -93,7 +94,15 @@ class App extends Component {
 
   render() {
     let daysWeather = (
-      <div className="container">
+      <Grid
+        container
+        item
+        xs={12}
+        sm={12}
+        md={10}
+        spacing={1}
+        className="container"
+      >
         {this.state.daysData.map((day, index) => {
           console.log(day);
           return (
@@ -106,14 +115,14 @@ class App extends Component {
             />
           );
         })}
-      </div>
+      </Grid>
     );
 
     const { data } = this.state;
-    const { daysData } = this.state;
+    //const { daysData } = this.state;
     return (
       <div>
-        <h1>App Weather</h1>
+        <h1 className="App">App Weather</h1>
         <TodayWeather data={data} />
         {daysWeather}
       </div>

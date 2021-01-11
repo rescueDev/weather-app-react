@@ -7,14 +7,10 @@ import { CardContent, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles ({
    root: {
-    minWidth: 275,
+
     
   },
-  bullet: {
-    display: 'inline-block',
-    margin: '0 2px',
-    transform: 'scale(0.8)',
-  },
+ 
   title: {
     fontSize: 22,
   },

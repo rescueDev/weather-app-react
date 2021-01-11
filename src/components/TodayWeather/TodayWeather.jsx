@@ -7,11 +7,12 @@ import { CardContent, Typography } from '@material-ui/core';
 import 'fontsource-roboto';
 import TodaySpecs from '../TodaySpecs/TodaySpecs';
 import DaysWeather from '../DaysWeather/DaysWeather';
+import styled from 'styled-components'
 
 
 const useStyles = makeStyles ({
    root: {
-    minWidth: 275,
+    /* minWidth: 275, */
     
   },
   bullet: {
@@ -28,15 +29,31 @@ const useStyles = makeStyles ({
   box:{textAlign:'center'}
 });
 
+  const StyledDiv = styled.div`
+  margin: 10px;
+  
+  width:100%;
+
+
+  @media all (max-width:320px) {
+    width: 100% ;
+    background: purple;
+  } 
+    @media all (max-width:768px) {
+    width: calc(100% / 6) ;
+  } 
+`
+
 export default function TodayWeather({data}) {
   const classes = useStyles();
+
 
   if(!data.weather){
       return 'Loading...'
   }
 
     return (
-    <div className={classes.root}>
+    <StyledDiv>
       <Grid container spacing={1}>
 
         <Grid item xs={12} sm={8} md={6} lg={6}>
@@ -58,7 +75,7 @@ export default function TodayWeather({data}) {
         
       </Grid>
                  
-    </div>
+    </StyledDiv>
     );
 }
 

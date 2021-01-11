@@ -3,8 +3,9 @@ import React, { Component } from "react";
 import DaysWeather from "./components/DaysWeather/DaysWeather";
 import TodaySpecs from "./components/TodaySpecs/TodaySpecs";
 import TodayWeather from "./components/TodayWeather/TodayWeather";
+import styled from "styled-components";
 import "./App.css";
-import { Grid } from "@material-ui/core";
+import { Card, Grid } from "@material-ui/core";
 
 class App extends Component {
   state = {
@@ -79,14 +80,14 @@ class App extends Component {
               lat: this.state.coords.latitude,
               lon: this.state.coords.longitude,
               lang: "it",
-              days: 7,
+              days: 8,
             },
           })
           .then((res) => {
             console.log("7 days", res.data.data);
-            const data = res.data.data;
+            const data = res.data.data.splice(1);
             this.setState({ daysData: data });
-            //console.log(this.state.daysData);
+            console.log(this.state.daysData);
           });
       });
     }
@@ -94,15 +95,7 @@ class App extends Component {
 
   render() {
     let daysWeather = (
-      <Grid
-        container
-        item
-        xs={12}
-        sm={12}
-        md={10}
-        spacing={1}
-        className="container"
-      >
+      <div className="container">
         {this.state.daysData.map((day, index) => {
           console.log(day);
           return (
@@ -111,18 +104,18 @@ class App extends Component {
               max={day.max_temp}
               min={day.min_temp}
               precip={day.precip}
-              ts={this.getDayOfWeek(day.ts * 1000)}
+              ts={new Date(day.ts * 1000).toLocaleDateString("it-IT")}
             />
           );
         })}
-      </Grid>
+      </div>
     );
 
     const { data } = this.state;
     //const { daysData } = this.state;
     return (
-      <div>
-        <h1 className="App">App Weather</h1>
+      <div className="App">
+        <h1>App Weather</h1>
         <TodayWeather data={data} />
         {daysWeather}
       </div>

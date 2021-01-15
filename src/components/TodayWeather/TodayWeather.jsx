@@ -7,14 +7,14 @@ import { CardContent, Typography } from '@material-ui/core';
 import 'fontsource-roboto';
 import TodaySpecs from '../TodaySpecs/TodaySpecs';
 import DaysWeather from '../DaysWeather/DaysWeather';
-import styled from 'styled-components'
+import styled  from 'styled-components';
 
 
 const useStyles = makeStyles ({
    root: {
-    /* minWidth: 275, */
-    
+    backgroundColor:'rgba(255,255,255,0.5);'
   },
+
   bullet: {
     display: 'inline-block',
     margin: '0 2px',
@@ -31,7 +31,6 @@ const useStyles = makeStyles ({
 
   const StyledDiv = styled.div`
   margin: 10px;
-  
   width:100%;
 
 
@@ -54,9 +53,11 @@ export default function TodayWeather({data}) {
 
     return (
     <StyledDiv>
-      <Grid container spacing={1}>
+     
 
-        <Grid item xs={12} sm={8} md={6} lg={6}>
+      <Grid  container spacing={1}>
+
+        <Grid  item xs={12} sm={8} md={6} lg={6}>
             <Card className={classes.root}>
 
             <CardContent className={classes.box} item xs>
@@ -74,7 +75,7 @@ export default function TodayWeather({data}) {
             <TodaySpecs data={data}/>           
         
       </Grid>
-                 
+         
     </StyledDiv>
     );
 }

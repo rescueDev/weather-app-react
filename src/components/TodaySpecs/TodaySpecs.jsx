@@ -7,14 +7,11 @@ import { CardContent, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles ({
    root: {
-
-    
+        backgroundColor:'rgba(255,255,255,0.5);'
   },
  
   title: {
-    fontSize: 16,
-
-    
+    fontSize: 16,    
   },
   pos: {
     marginBottom: 12,

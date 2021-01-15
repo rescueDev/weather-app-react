@@ -1,8 +1,23 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+header {
+  height: 100px;
+}
+
 .container {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   margin: 10px auto;
+}
+
+.fullcontainer {
+  width: 100vw;
+  min-height: 100vh;
 }
 
 @media all and (max-width: 768px) {
@@ -15,11 +30,23 @@
 @media all and (min-width: 768px) {
   .container {
     flex-wrap: nowrap;
+    overflow-x: auto;
   }
 }
 
 .App {
   text-align: center;
   width: 80%;
-  margin: 10px auto;
+  margin: 0px auto;
+}
+
+.cold {
+  background-image: url(./img/cold.jpg);
+  background-size: cover;
+  transition: 0.5s ease;
+}
+.hot {
+  background-image: url("./img/warm.jpg");
+  background-size: cover;
+  transition: 0.5s ease;
 }

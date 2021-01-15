@@ -168,15 +168,23 @@ class App extends Component {
     const { data } = this.state;
     //const { daysData } = this.state;
     return (
-      <div className="App">
-        <h1>App Weather</h1>
-        <InputSearch
-          enter={this.searchCityHandler}
-          change={this.inputCityHandler}
-          value={this.state.city}
-        ></InputSearch>
-        <TodayWeather data={data} />
-        {daysWeather}
+      <div
+        className={`fullcontainer ${
+          this.state.data.temp > 20 ? "hot" : "cold"
+        }`}
+      >
+        <div className="App">
+          <header>
+            <h1>React Weather</h1>
+            <InputSearch
+              enter={this.searchCityHandler}
+              change={this.inputCityHandler}
+              value={this.state.city}
+            />
+          </header>
+          <TodayWeather data={data} />
+          {daysWeather}
+        </div>
       </div>
     );
   }

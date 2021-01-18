@@ -184,6 +184,7 @@ class App extends Component {
           </header>
           <TodayWeather data={data} />
           {daysWeather}
+          <footer className="credits">Credits to @sa-borgia3</footer>
         </div>
       </div>
     );

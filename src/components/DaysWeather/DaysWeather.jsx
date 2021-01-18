@@ -22,7 +22,7 @@ const StyledDiv = styled.div`
 
 const useStyles = makeStyles ({
    root: {
-        backgroundColor:'rgba(255,255,255,0.5);'    
+        backgroundColor:'rgba(255,255,255,0.6);'    
   },
   icon:{
     width:'60px',

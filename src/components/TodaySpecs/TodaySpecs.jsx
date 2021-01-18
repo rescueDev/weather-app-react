@@ -7,7 +7,7 @@ import { CardContent, Typography } from '@material-ui/core';
 
 const useStyles = makeStyles ({
    root: {
-        backgroundColor:'rgba(255,255,255,0.5);'
+        backgroundColor:'rgba(255,255,255,0.6);'
   },
  
   title: {
@@ -32,8 +32,8 @@ export default function TodaySpecs({data}) {
 
         <Card  className={classes.root}>
             <CardContent className={classes.box} item xs>
-                <Typography variant="h1" component="h2" className={classes.title}>Velocita vento: {Math.round(data.windSpeed)} km/h</Typography>
-                <Typography className={classes.title}>Qualita aria: {data.airQuality} %</Typography>
+                <Typography variant="h1" component="h2" className={classes.title}>Velocità vento: {Math.round(data.windSpeed)} km/h</Typography>
+                <Typography className={classes.title}>Qualità aria: {data.airQuality} %</Typography>
                 <Typography className={classes.title}>Pressione: {Math.round(data.pressure)} mb</Typography>
                 <Typography className={classes.title}>Precipitazioni: {data.precip} mm/h</Typography>
             </CardContent>

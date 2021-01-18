@@ -8,6 +8,10 @@ header {
   height: 100px;
 }
 
+header h1 {
+  margin-bottom: 20px;
+  color: rgb(56, 53, 53);
+}
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -49,4 +53,9 @@ header {
   background-image: url("./img/warm.jpg");
   background-size: cover;
   transition: 0.5s ease;
+}
+
+.credits {
+  color: white;
+  font-style: italic;
 }

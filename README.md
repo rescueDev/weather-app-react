@@ -1,6 +1,6 @@
 <strong>Weather Web-App<strong>
   
-  Simple weather app made with React.
+  Simple weather app made with React, material-ui and styled-components.
   
   Features:
   

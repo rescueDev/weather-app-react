@@ -16,21 +16,6 @@ class App extends Component {
     daysData: [],
   };
 
-  /*   getDayOfWeek = (date) => {
-    const dayOfWeek = new Date(date).getDay();
-    return isNaN(dayOfWeek)
-      ? null
-      : [
-          "Sunday",
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday",
-        ][dayOfWeek];
-  }; */
-
   inputCityHandler = (event) => {
     this.setState({ city: event.target.value });
   };
@@ -166,6 +151,7 @@ class App extends Component {
     );
 
     const { data } = this.state;
+    console.log(data);
     //const { daysData } = this.state;
     return (
       <div

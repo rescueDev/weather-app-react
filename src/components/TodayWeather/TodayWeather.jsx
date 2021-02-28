@@ -5,7 +5,7 @@ import Grid from "@material-ui/core/Grid";
 import { CardContent, Typography } from "@material-ui/core";
 import "fontsource-roboto";
 import TodaySpecs from "../TodaySpecs/TodaySpecs";
-import DaysWeather from "../DaysWeather/DaysWeather";
+// import DaysWeather from "../DaysWeather/DaysWeather";
 import styled from "styled-components";
 
 const useStyles = makeStyles({
@@ -51,18 +51,16 @@ export default function TodayWeather({ data }) {
   return (
     <StyledDiv>
       <Grid container spacing={1}>
-        <Grid item xs={12} sm={8} md={6} lg={6}>
+        <Grid item xs={12} spacing={1} sm={12} md={6} lg={6}>
           <Card className={classes.root}>
             <CardContent className={classes.box} item xs>
               <Typography variant="h1" component="h2" className={classes.title}>
                 {data.city}, {data.country}
               </Typography>
-              <Typography className={classes.title}>
+              <Typography variant="subtitle1">
                 {new Date(data.ts * 1000).toLocaleDateString("it-IT")}
               </Typography>
-              <Typography className={classes.title}>
-                {Math.round(data.temp)} °C
-              </Typography>
+              <Typography variant="h3">{Math.round(data.temp)} °C</Typography>
               <img
                 src={`https://www.weatherbit.io/static/img/icons/${data.weather.icon}.png`}
                 alt=""

@@ -29,7 +29,6 @@ class App extends Component {
           params: {
             key: `${process.env.REACT_APP_API_KEY}`,
             city: this.state.city,
-            lang: "it",
           },
         })
         .then((res) => {
@@ -58,7 +57,6 @@ class App extends Component {
             key: `${process.env.REACT_APP_API_KEY}`,
             city: this.state.city,
 
-            lang: "it",
             days: 8,
           },
         })
@@ -88,7 +86,6 @@ class App extends Component {
               key: `${process.env.REACT_APP_API_KEY}`,
               lat: this.state.coords.latitude,
               lon: this.state.coords.longitude,
-              lang: "it",
             },
           })
           .then((res) => {
@@ -139,6 +136,7 @@ class App extends Component {
           //console.log(day);
           return (
             <DaysWeather
+              key={day.ts}
               weather={day.weather}
               max={day.max_temp}
               min={day.min_temp}
@@ -161,7 +159,7 @@ class App extends Component {
       >
         <div className="App">
           <header>
-            <h1>React Weather</h1>
+            <h2>React Weather</h2>
             <InputSearch
               enter={this.searchCityHandler}
               change={this.inputCityHandler}

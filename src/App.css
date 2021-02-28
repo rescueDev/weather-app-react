@@ -1,11 +1,18 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+html,
+body {
+  font-family: "Lato", sans-serif;
+}
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Lato", sans-serif;
 }
 
 header {
   height: 100px;
+  text-align: center;
 }
 
 header h1 {
@@ -17,6 +24,11 @@ header h1 {
   flex-wrap: wrap;
   width: 100%;
   margin: 10px auto;
+}
+
+.container {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox */
 }
 
 .fullcontainer {
@@ -39,7 +51,6 @@ header h1 {
 }
 
 .App {
-  text-align: center;
   width: 80%;
   margin: 0px auto;
 }
@@ -58,4 +69,5 @@ header h1 {
 .credits {
   color: white;
   font-style: italic;
+  text-align: center;
 }
